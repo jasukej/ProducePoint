@@ -25,7 +25,7 @@ def get_coordinates(address):
         return None
 
 def get_address(longitude, latitude):
-    url = f"http://dev.virtualearth.net/REST/v1/Locations/{longitude},{latitude}?o=json&key={api_key}"
+    url = f"http://dev.virtualearth.net/REST/v1/Locations/{latitude},{longitude}?o=json&key={api_key}"
 
     response = requests.get(url)
     data = response.json()
