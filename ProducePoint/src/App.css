@@ -84,4 +84,23 @@
 
 .regis-page {
   padding: 20px;
+  width: 75%;
+  margin: auto;
+}
+
+.mb-3 {
+  margin: 15px;
+  height: 35px;
+}
+
+
+.form-control {
+  height: 35px;
+  width: 200px;
+}
+
+.btn-primary {
+  background-color: #388E3C;
+  color:#ffffff;
+  margin: 7px;
 }
