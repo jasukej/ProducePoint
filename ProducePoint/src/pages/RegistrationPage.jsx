@@ -12,18 +12,23 @@ export default function RegistrationPage() {
     const { userData, updateUser } = useUserContext()
 
     return(
-        <div className="regis-page">
+      <div className="registration-login-grid">
+        <div className="p-4 box regis-page">
           <img src="/title.svg" className="large-text-logo"/>
             <h1 className="title">Reduce food insecurity, one tap at a time.</h1>
             <Signup userData={userData} updateUser={updateUser} />
+          </div>
 
-            <img src="/green-circle-dark.svg" className="deco deco-one" />
-            <img src="/green-circle-light.svg" className="deco deco-two" />
-            <img src="/green-circle-light.svg" className="deco deco-three" />
-            <img src="/green-circle-dark.svg" className="deco deco-four" />
-            <img src="/green-circle-light.svg" className="deco deco-five" />
-            <img src="/green-circle-light.svg" className="deco deco-six" />
+        <div className="deco-container">
+          <img src="/green-circle-dark.svg" className="deco deco-one" />
+          <img src="/green-circle-light.svg" className="deco deco-two" />
+          <img src="/green-circle-light.svg" className="deco deco-three" />
+          <img src="/green-circle-dark.svg" className="deco deco-four" />
+          <img src="/green-circle-light.svg" className="deco deco-five" />
+          <img src="/green-circle-light.svg" className="deco deco-six" />
         </div>
+
+      </div>
     )
     
 }
