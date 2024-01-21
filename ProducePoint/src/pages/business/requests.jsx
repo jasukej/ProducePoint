@@ -43,10 +43,10 @@ export default function Requests() {
           </select>
         </label>
 
-        <p>
+        <div>
           <h4>Your current location: </h4>
           <div> {/* User's current location*/} </div>
-        </p>
+        </div>
       </div>
     </div>
   );

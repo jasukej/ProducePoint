@@ -32,7 +32,7 @@ function App() {
         element={
           <RegistrationPage
             userData={userData}
-            setUserData={(prevUserData) => {
+            setUserData={prevUserData => {
               setUserData(userData);
             }}
           />
