@@ -1,19 +1,12 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700;900&display=swap');
 
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
 :root {
   /* Primary colors */
   --primary: #388E3C; /* Main brand color */
   --secondary: #81C784; /* Secondary color */
   --dark-grey: #505050; 
+  --light-grey: #D3D1D8; /* Light grey */
 
   /* Background colors */
   --white: #ffffff; /* Background color */
@@ -31,43 +24,6 @@
 
 .body{
   margin: 0
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
 
 /* Login & Registration Page */
@@ -104,14 +60,6 @@
   background-color: #388E3C;
   color:#ffffff;
   margin: 7px;
-}
-
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 :root {
@@ -230,15 +178,28 @@ h4 {
 }
 
 /* Navbar */
-.nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  height: 70px;
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 0 15px #D3D1D8;
+}
 
+.logo {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .navlinks {
   display: flex;
+  gap: 30px;
   justify-content: space-between;
 }

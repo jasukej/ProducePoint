@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 import RegistrationPage from "../RegistrationPage";
 
-export default function Profile(userData) {
+export default function Profile({userData}) {
   const [editableFields, setEditableFields] = useState({
     Name: false,
     email: false,
@@ -39,7 +39,7 @@ export default function Profile(userData) {
       <h1>Your Profile</h1>
 
       <div className="profile-container">
-        <p>
+        <div>
           <strong>Full Name:</strong>
           {editableFields.name ? (
             <input
@@ -54,9 +54,9 @@ export default function Profile(userData) {
           {editableFields.fullName && (
             <button onClick={() => handleSave("fullName")}>Save</button>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           <strong>Email:</strong>
           {editableFields.email ? (
             <input
@@ -71,9 +71,9 @@ export default function Profile(userData) {
           {editableFields.email && (
             <button onClick={() => handleSave("email")}>Save</button>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           <strong>Password:</strong>
           {editableFields.password ? (
             <input
@@ -88,9 +88,9 @@ export default function Profile(userData) {
           {editableFields.password && (
             <button onClick={() => handleSave("password")}>Save</button>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           <strong>Address:</strong>
           {editableFields.address ? (
             <textarea
@@ -104,7 +104,7 @@ export default function Profile(userData) {
           {editableFields.address && (
             <button onClick={() => handleSave("address")}>Save</button>
           )}
-        </p>
+        </div>
       </div>
     </div>
   );
