@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function SearchBar() {
+export default function SearchBar({latitude, longitude, max_distance}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState([]);
+  const [produce, setProduce] = useState([]);
+  const [quantities, setQuantities] = useState([]);
+  const [names, setNames] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const fetchItems = async () => { // I don't have this API yet
       try {
-        const response = await axios.get('http://localhost:3001/api/items');
+        const response = await axios.get('http://localhost:5000/api/getallproduce');
         setItems(response.data);
       } catch (error) {
         console.error('Error fetching items:', error);
@@ -20,8 +24,14 @@ export default function SearchBar() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/items?search=${searchTerm}`);
-      setItems(response.data);
+      const response = await axios.get(`http://localhost:5000/api/request?latitude=${latitude}&longitude=${longitude}&produce=${searchTerm}&max_distance=${max_distance}`);
+      const {quantites} = response.data;
+      const {names} = response.data;
+      const {locations} = response.data;
+      setQuantities(quantites);
+      setNames(names);
+      setLocations(locations);
+      setProduce(searchTerm);
     } catch (error) {
       console.error('Error searching items:', error);
     }
@@ -38,8 +48,8 @@ export default function SearchBar() {
       <button onClick={handleSearch}>Search</button>
 
       <ul>
-        {items.map((item) => (
-          <li key={item._id}>{item.name}</li>
+        {names.map((name, index) => (
+          <li>{name} has {quantities[index]} {produce} at {locations[index]}</li>
         ))}
       </ul>
     </div>
