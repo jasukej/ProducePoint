@@ -184,8 +184,10 @@
   font-weight:700;
 }
 
-h1 {
+#hp {
   font-size: 48px;
+  color:#388E3C;
+  font-family: Inter;
 }
 
 h2 {
