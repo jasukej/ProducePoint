@@ -1,5 +1,5 @@
 import os
-from location import get_coordinates, get_address
+from location import get_coordinates, get_address, get_distance
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from pymongo import MongoClient, GEOSPHERE
@@ -72,7 +72,7 @@ def update_location():
 def add_produce():
     email = request.args.get('email')
     produce = request.args.get('produce')
-    quantity = request.args.get('quantity')
+    quantity = float(request.args.get('quantity'))
 
     if not email or not produce or not quantity:
         return jsonify({'status': 404})
@@ -83,9 +83,18 @@ def add_produce():
     try:
         if produce in result['inventory']:
             quantity += result['inventory'][produce]
+
         users.update_one(
             {'email': email},
             {'$set': {f'inventory.{produce}': quantity}})
+        
+        item = all_produce.find_one({'name': produce})
+        if not item:
+            all_produce.insert_one({'name': produce, 'quantity': quantity})
+        else:
+            amount = all_produce[produce]['quantity']
+            all_produce.update_one({'name': produce}, {'$set': {'quantity': amount + result['inventory'][produce]}})
+
         return jsonify({'status': 200})
     except:
         return jsonify({'status': 404})
@@ -94,7 +103,7 @@ def add_produce():
 def remove_produce():
     email = request.args.get('email')
     produce = request.args.get('produce')
-    quantity = request.args.get('quantity')
+    quantity = float(request.args.get('quantity'))
 
     if not email or not produce or not quantity:
         return jsonify({'status': 404})
@@ -105,16 +114,22 @@ def remove_produce():
     
     try:
         if produce in result['inventory']:
-            quantity = result['inventory'][produce] - quantity
+            leftover = result['inventory'][produce] - quantity
 
-        if quantity > 0:
+        if leftover > 0:
             users.update_one(
                 {'email': email},
-                {'$set': {f'inventory.{produce}': quantity}})
+                {'$set': {f'inventory.{produce}': leftover}})
         else:
             users.update_one(
                 {'email': email},
                 {'$unset': {f'inventory.{produce}': ''}})
+        
+        amount = all_produce[produce]['quantity']
+        all_produce.update_one({'name': produce}, {'$set': {'quantity': amount - result['inventory'][produce]}})
+        if all_produce['quantity'] <= 0:
+            all_produce.delete_one({'name': produce})
+
         return jsonify({'status': 200})
     except:
         return jsonify({'status': 404})
@@ -169,6 +184,7 @@ def data():
         'names': [],
         'emails':  [],
         'locations': [],
+        'distances': [],
         'quantites': []
     }
 
@@ -185,8 +201,8 @@ def data():
             response['names'].append(result['name'])
             response['emails'].append(result['email'])
             response['locations'].append(get_address(result['homelocation']['coordinates'][0], result['homelocation']['coordinates'][1]))
+            response['distances'].append(get_distance([longitude, latitude], result['homelocation']['coordinates']))
             response['quantites'].append(result['inventory'][produce])
-
     return jsonify(response)
 
 @api.route('/api/getname', methods=['GET']) # Returns the user's profile
@@ -262,7 +278,7 @@ def produce():
     else:
         return jsonify({'status': 200, 'quantity': 0})
 
-@api.route('/api/getallproduce', methods=['GET']) # Returns the user's profile
+@api.route('/api/getallproduce', methods=['GET']) # Returns all produce
 def allproduce():
     return jsonify({'status': 200, 'items': [item['name'] for item in all_produce.find()]})
 

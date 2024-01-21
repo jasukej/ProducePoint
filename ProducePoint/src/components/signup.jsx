@@ -19,9 +19,21 @@ export default function Signup({ userData, updateUser }) {
     setError("");
     try {
       console.log(formData);
+      const response = await fetch(`http://127.0.0.1:5000/api/create?name=${formData.name}&email=${formData.email}&address=${formData.address}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        navigate("/landing");
+      } else {
+        throw new Error("Failed to save info to the database");
+      }
+
       await signUp(formData.email, formData.password);
       updateUser({ ...formData });
-      navigate("/landing");
     } catch (err) {
       setError(err.message);
     }

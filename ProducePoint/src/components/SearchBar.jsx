@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function SearchBar({latitude, longitude, max_distance}) {
+export default function SearchBar({latitude, longitude, max_distance, units}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState([]);
   const [produce, setProduce] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [names, setNames] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [distances, setDistances] = useState([]);
+
+  if (units === "miles") {
+    max_distance = max_distance * 1609.34;
+  } else {
+    max_distance = max_distance * 1000;
+  }
 
   useEffect(() => {
     const fetchItems = async () => { // I don't have this API yet
@@ -28,9 +35,11 @@ export default function SearchBar({latitude, longitude, max_distance}) {
       const {quantites} = response.data;
       const {names} = response.data;
       const {locations} = response.data;
+      const {distances} = response.data;
       setQuantities(quantites);
       setNames(names);
       setLocations(locations);
+      setDistances(distances);
       setProduce(searchTerm);
     } catch (error) {
       console.error('Error searching items:', error);
@@ -49,7 +58,7 @@ export default function SearchBar({latitude, longitude, max_distance}) {
 
       <ul>
         {names.map((name, index) => (
-          <li>{name} has {quantities[index]} {produce} at {locations[index]}</li>
+          <li>{name} has {quantities[index]} {produce} at {locations[index]} ({distances[index]} km) away</li>
         ))}
       </ul>
     </div>

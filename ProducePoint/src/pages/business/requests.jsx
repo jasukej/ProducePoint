@@ -84,7 +84,7 @@ export default function Requests() {
       <Navbar />
       <h1>Looking for something?</h1>
 
-      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance}/>
+      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance} units={unit}/>
 
       <div className="within-distance">
         <label>
