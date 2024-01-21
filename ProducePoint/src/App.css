@@ -154,6 +154,9 @@ h4 {
 .serif {
   font-family: Merriweather;
 }
+.inline{
+  display: inline;
+}
 
 /* Login & Registration Page */
 .registration-login-grid {
@@ -183,7 +186,7 @@ h4 {
 }
 
 /* Navbar */
-.nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,16 +245,11 @@ h4 {
   width: 700px;        
   height: 400px;       
   margin: auto;
-<<<<<<< HEAD
-  background-color: #5bac5e; /* Background color */
-  color: white;        
-  display: grid;  
-  grid-template-columns: repeat(5, 1fr); 
-  grid-template-rows: repeat(5,1fr);    
-=======
+
+
   background-color: #fff; /* Background color */
   color: #388E3C;         
->>>>>>> daa9707fe24dbd0ee76243a2bf62ddaa746260c9
+
   border-radius: 4px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for 3D effect */  
 }
@@ -261,21 +259,15 @@ h4 {
 }
 
 .request-box h3 {
-  grid-row: 1/2;
-  grid-column: 2/3;
   text-align: center;
   margin: auto;
 }
 
 .current-location {
-  grid-row: 2/3;
-  grid-column: 2/3;
   text-align: center;
   margin: auto;
 }
 .within-distance {
-  grid-row: 3/4;
-  grid-column: 2/3;
   margin: 5px;
 
 }
@@ -283,30 +275,37 @@ h4 {
 .search {
   margin: 0;
   padding-top: 200px;
-}
-.unit-select {
-  grid-row: 3/4;
-  grid-column: 3/4;
-  margin: 5px;
-
+  
 }
 
 .searchBar {
-  grid-row: 5/6;
-  grid-column: 4/5;
   margin: 5px;
 }
 
-<<<<<<< HEAD
+#search-bar-container input{
+  width: 80%;
+  height: 40px;
+  box-shadow: 0 0 15px #D3D1D8;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+#search-bar-container button{
+  width: 15%;
+  height: 40px;
+  box-shadow: 0 0 15px #D3D1D8;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
 
 
-
-=======
 #search-bar-container h2 {
   margin-left: 20px;
   margin-top: 20px;
 }
->>>>>>> daa9707fe24dbd0ee76243a2bf62ddaa746260c9
+
 
 /* decoration */
 .deco {
