@@ -85,10 +85,8 @@ export default function Requests() {
         <Navbar />
         <h1>Looking for something?</h1>
 
-<<<<<<< HEAD
       <div className="request-box">
         <h3 id="add-item">Add item</h3>
-        
         <div className="within-distance">
           <label id="search">
             Within
@@ -99,9 +97,7 @@ export default function Requests() {
               placeholder="Enter distance"
             />
           </label>
-=======
       <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance}/>
->>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
 
           <label>
             <select value={unit} onChange={handleUnitChange}>
@@ -110,26 +106,13 @@ export default function Requests() {
             </select>
           </label>
 
-<<<<<<< HEAD
-          <div>
-            <h4>Your current location: </h4>
-            <div> {/* User's current location*/} </div>
-          </div>
-=======
-        <label>
-          <select value={unit} onChange={handleUnitChange}>
-            <option value="miles">Miles</option>
-            <option value="km">Kilometers</option>
-          </select>
-        </label>
-
         <div>
             <h4>Your current location: </h4>
             <div>Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}</div>
->>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
         </div>
       </div>
       
+    </div>
     </div>
   );
 }

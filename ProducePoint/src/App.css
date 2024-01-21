@@ -205,7 +205,6 @@ h4 {
   margin: auto;
 }
 
-<<<<<<< HEAD
 .request-box {
   width: 700px;        
   height: 400px;       
@@ -223,16 +222,13 @@ h4 {
 
 .search {
   margin: 0;
-  padding-top: 90px;
+  padding-top: 200px;
 }
 
 .add-item {
   margin: 0;
   padding-left: 20px;
   padding-top: 20px;
-}
-=======
-  
 }
 
 /* decoration */
@@ -276,4 +272,3 @@ h4 {
   right: 20em;
 }
 
->>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
