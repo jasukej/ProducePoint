@@ -46,7 +46,6 @@ export default function Stock() {
           <AddItem onAddItem={handleAddItem} />
         </div>
         <StockDisplay stockItems={stockItems} />
-        
       </div>
     </div>
   );
