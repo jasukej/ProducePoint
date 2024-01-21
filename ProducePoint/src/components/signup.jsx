@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
 
 export default function Signup() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +30,14 @@ export default function Signup() {
         {error && <Alert variant="danger">{error}</Alert>}
 
         <Form onSubmit={handleSubmit}>
+
+        <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Control
+              type="full name"
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control

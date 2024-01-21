@@ -1,43 +1,62 @@
-import React from "react"
-import Form from 'react-bootstrap/Form';
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { useUserAuth } from "../context/UserAuthContext";
 
 export default function Login() {
 
-    <InputGroup className="mb-3">
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+    const [password, setPassword] = useState("");
+    const { signUp } = useUserAuth();
+    let navigate = useNavigate();
 
-    <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-
-    <GoogleButton
-                className="g-btn"
-                type="dark"
-                onClick={handleGoogleSignIn}
-            />
-
-    </InputGroup>       
-
-    const handleGoogleSignIn = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
         try {
-            await googleSignIn();
-            navigate("/home");
-        } catch (error) {
-            console.log(error.message);
+        await signUp(email, password);
+        navigate("/landing");
+        } catch (err) {
+        setError(err.message);
         }
-        };
+    };
+    return (
+    <>
+    <div className="p-4 box">
+      <h1 className="title"> Log in to your ProducePoint </h1>
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      <Form onSubmit={handleSubmit}>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control
+            type="email"
+            placeholder="Email address"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+
+        <div className="d-grid gap-2">
+          <Button variant="primary" type="Submit">
+            Log in
+          </Button>
+        </div>
+      </Form>
+    </div>
+    <div className="p-4 box mt-3 text-center">
+      Click to register? <Link to="/" className="login-link">Register</Link>
+    </div>
+  </>
+    )
 
 }

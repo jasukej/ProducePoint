@@ -23,6 +23,8 @@ export default function LandingBusiness() {
         {user && user.email}
       </div>
       <div className="d-grid gap-2">
+          
+          
 
           <Button variant="primary" onClick={handleLogout}>
             Log out

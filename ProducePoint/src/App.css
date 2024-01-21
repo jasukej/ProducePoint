@@ -85,3 +85,10 @@
 .regis-page {
   padding: 20px;
 }
+
+/* Navbar */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
