@@ -21,6 +21,7 @@ cors.init_app(api)
 
 db = client['ProducePoint']
 users = db['users']
+all_produce = db['produce']
 
 @api.route('/')
 def index():
@@ -317,6 +318,20 @@ def get_stock():
                 }
 
     return jsonify({'status': 200, 'inventory': [value for key, value in stock.items()]})
+
+@api.route('/api/findproduce', methods=['GET']) # Returns the produce items starting with parameter 'search'
+def find_produce():
+    search = request.args.get('search')
+
+    if not search:
+        return jsonify({'status': 400})
+
+    results = all_produce.find({'name': {'$regex': '^' + search}})
+    produce_list = []
+    for result in results:
+        produce_list.append(result)
+
+    return jsonify({'status': 200, 'produce': produce_list})
 
 if __name__ == '__main__':
     api.run(debug=True)
