@@ -45,74 +45,77 @@ export default function AddItem({ onAddItem }) {
   return (
     <div>
       <div className="add-item-form">
-        <h2>Add Item</h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="productName">
-            <Form.Label>Product Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter product name"
-              name="productName"
-              value={itemFormData.productName}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+        <h2>Add an item!</h2>
+        <div className="stock-add-labels">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="productName">
+              <Form.Label>Product Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter product name"
+                name="productName"
+                value={itemFormData.productName}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-          <Form.Group controlId="category">
-            <Form.Label>Category</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter category"
-              name="category"
-              value={itemFormData.category}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+            <Form.Group controlId="category">
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter category"
+                name="category"
+                value={itemFormData.category}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-          <Form.Group controlId="quantity">
-            <Form.Label>Quantity</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter quantity"
-              name="quantity"
-              value={itemFormData.quantity}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+            <Form.Group controlId="quantity">
+              <Form.Label>Quantity</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter quantity"
+                name="quantity"
+                value={itemFormData.quantity}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-          <Form.Group controlId="unit">
-            <Form.Label>Unit</Form.Label>
-            <Form.Control
-              as="select"
-              name="unit"
-              value={itemFormData.unit}
-              onChange={handleChange}
-            >
-              <option value="kg">kg</option>
-              <option value="pieces">pieces</option>
-              <option value="g">g</option>
-              <option value="litres">litres</option>
-            </Form.Control>
-          </Form.Group>
+            <Form.Group controlId="unit">
+              <Form.Label>Unit</Form.Label>
+              <Form.Control
+                as="select"
+                name="unit"
+                value={itemFormData.unit}
+                onChange={handleChange}
+              >
+                <option value="kg">kg</option>
+                <option value="pieces">pieces</option>
+                <option value="g">g</option>
+                <option value="litres">litres</option>
+              </Form.Control>
+            </Form.Group>
 
-          <Form.Group controlId="expiryDate">
-            <Form.Label>Expiry Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="expiryDate"
-              value={itemFormData.expiryDate}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+            <Form.Group controlId="expiryDate">
+              <Form.Label>Expiry Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="expiryDate"
+                value={itemFormData.expiryDate}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            </Form>
+          </div>
 
-          <Button variant="primary" type="submit">
+          <Button className="add-button" variant="primary" type="submit">
             Add Item
           </Button>
-        </Form>
+        
       </div>
     </div>
   );
