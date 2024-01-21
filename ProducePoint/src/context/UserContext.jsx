@@ -15,12 +15,8 @@ export const UserContextProvider = ({ children }) => {
     address: "",
   });
 
-  const updateUser = (newUserData) => {
-    setUserData(newUserData);
-  };
-
   return (
-    <UserContext.Provider value={{ userData, updateUser }}>
+    <UserContext.Provider value={{ userData, setUserData }}>
       {children}
     </UserContext.Provider>
   );
