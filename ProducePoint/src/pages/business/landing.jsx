@@ -1,13 +1,12 @@
 import React from "react";
-import Navbar from '../../components/Navbar'
+import Navbar from "../../components/Navbar";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../../context/UserAuthContext";
-import { Link } from 'react-router-dom';
-import '../../App.css'
+import { Link } from "react-router-dom";
+import "../../App.css";
 
 export default function LandingBusiness() {
-
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -17,19 +16,22 @@ export default function LandingBusiness() {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return (
     <>
       <Navbar />
       <div className="p-4 box mt-3">
-        <h1>Hey there <span> {user && user.name} </span></h1>
+        <h1 class="title serif bold">
+          Hey there, <span> {user && user.name} </span>
+        </h1>
         <h3>What do you have in store?</h3>
       </div>
       <div className="d-grid gap-2">
-          <Button variant="primary" onClick={handleLogout}>
-            Log out
-          </Button>
+        <Button variant="primary" onClick={handleLogout}>
+          Log out
+        </Button>
       </div>
     </>
-    )};
+  );
+}

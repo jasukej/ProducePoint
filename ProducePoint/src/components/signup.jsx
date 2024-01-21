@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
 import "../App.css";
 
-export default function Signup({ userData, setUserData }) {
+export default function Signup({ userData, updateUser }) {
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -18,11 +18,28 @@ export default function Signup({ userData, setUserData }) {
     e.preventDefault();
     setError("");
     try {
-      await signUp(email, password);
+      console.log(formData);
+      await signUp(formData.email, formData.password);
+      updateUser({ ...formData });
       navigate("/landing");
     } catch (err) {
       setError(err.message);
     }
+  };
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+  });
+
+  const handleChange = (e) => {
+    console.log(e.target, e.target.value);
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -30,59 +47,41 @@ export default function Signup({ userData, setUserData }) {
       <div className="p-4 box">
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
-          <div className="sign-up-container">
-            <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Control
-                type="text"
-                placeholder="Name"
-                onChange={(e) =>
-                  setUserData((prevUserData) => ({
-                    ...prevUserData,
-                    name: e.target.value,
-                  }))
-                }
-              />
-            </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Control
+              type="text"
+              placeholder="Name"
+              name="name"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicAddress">
-              <Form.Control
-                type="text"
-                placeholder="Address"
-                onChange={(e) =>
-                  setUserData((prevUserData) => ({
-                    ...prevUserData,
-                    name: e.target.value,
-                  }))
-                }
-              />
-            </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="email"
+              placeholder="Email address"
+              name="email"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Control
-                type="email"
-                placeholder="Email address"
-                onChange={(e) =>
-                  setUserData((prevUserData) => ({
-                    ...prevUserData,
-                    name: e.target.value,
-                  }))
-                }
-              />
-            </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(e) =>
-                  setUserData((prevUserData) => ({
-                    ...prevUserData,
-                    name: e.target.value,
-                  }))
-                }
-              />
-            </Form.Group>
-          </div>
+          <Form.Group className="mb-3" controlId="formBasicAddress">
+            <Form.Control
+              type="text"
+              placeholder="Address"
+              name="address"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
           <div className="d-grid gap-2">
             <Button variant="primary" type="Submit" className="serif btn-primary">
