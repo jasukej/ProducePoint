@@ -1,36 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function SearchBar({latitude, longitude, max_distance}) {
+export default function SearchBar({latitude, longitude, max_distance, units}) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [items, setItems] = useState([]);
   const [produce, setProduce] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [names, setNames] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [distances, setDistances] = useState([]);
 
-  useEffect(() => {
-    const fetchItems = async () => { // I don't have this API yet
-      try {
-        const response = await axios.get('http://localhost:5000/api/getallproduce');
-        setItems(response.data);
-      } catch (error) {
-        console.error('Error fetching items:', error);
-      }
-    };
+  const [items, setItems] = useState([]);
 
-    fetchItems();
-  }, []);
+  if (units === "miles") {
+    max_distance = max_distance * 1609.34;
+  } else {
+    max_distance = max_distance * 1000;
+  }
+  
+  const handleSearchChange = async (e) => {
+    setSearchTerm(e);
+
+    try {
+      const response = await axios.get(`http://localhost:5000/api/findproduce?search=${e}`);
+      const {produce} = response.data;
+      setItems(produce);
+      console.log(produce);
+    } catch (error) {
+      console.error('Error searching items:', error);
+    }
+
+    if (e == null || e === "") {
+      setItems([]);
+    }
+  }
 
   const handleSearch = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/request?latitude=${latitude}&longitude=${longitude}&produce=${searchTerm}&max_distance=${max_distance}`);
-      const {quantites} = response.data;
+      const {quantities} = response.data;
       const {names} = response.data;
       const {locations} = response.data;
-      setQuantities(quantites);
+      const {distances} = response.data;
+      setQuantities(quantities);
       setNames(names);
       setLocations(locations);
+      setDistances(distances);
       setProduce(searchTerm);
     } catch (error) {
       console.error('Error searching items:', error);
@@ -42,15 +56,22 @@ export default function SearchBar({latitude, longitude, max_distance}) {
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => handleSearchChange(e.target.value)}
         placeholder="Search..."
         className='search-bar'
       />
       <button onClick={handleSearch} id="request-button">Search</button>
-
+      <h1>Items</h1>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+        
+      <h1>Search results</h1>
       <ul>
         {names.map((name, index) => (
-          <li>{name} has {quantities[index]} {produce} at {locations[index]}</li>
+          <li key={index}>{name} has {quantities[index]} {produce} at {locations[index]} ({distances[index]} km) away</li>
         ))}
       </ul>
     </div>

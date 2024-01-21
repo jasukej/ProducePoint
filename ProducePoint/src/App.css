@@ -345,3 +345,15 @@ h4 {
   right: 20vw;
 }
 
+.stock-page {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+
+.stock {
+  width: 100%;
+  height: 100%;
+}
