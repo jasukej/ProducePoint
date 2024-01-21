@@ -23,7 +23,7 @@ export default function LandingBusiness() {
     <>
       <Navbar />
       <div className="p-4 box mt-3">
-        <h1 id="hp">Hey there <span> {user && user.name} </span></h1>
+        <h1>Hey there <span> {user && user.name} </span></h1>
         <h3>What do you have in store?</h3>
       </div>
       <div className="d-grid gap-2">

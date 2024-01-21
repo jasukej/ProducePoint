@@ -185,10 +185,9 @@
   font-weight:700;
 }
 
-#hp {
+h1 {
   font-size: 48px;
   color:#388E3C;
-  font-family: Inter;
 }
 
 h2 {
@@ -244,6 +243,11 @@ h4 {
 .navlinks {
   display: flex;
   justify-content: space-between;
+}
+
+.navlinks a {
+  margin: 15px;
+  
 }
 
 .large-text-logo {
