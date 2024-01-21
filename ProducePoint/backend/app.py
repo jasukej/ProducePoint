@@ -151,7 +151,7 @@ def remove_produce():
             all_produce.delete_one({'name': produce})
 
         for item in result['inventory']:
-            if result['inventory'][item]['name'] == produce:
+            if item.lower() == produce.lower():
                 if unit in result['inventory'][item]['units']:
                     # Sort batches by expiry date (earliest first)
                     batches = sorted(result['inventory'][item]['units'][unit], key=lambda x: x['expiry_date'])
@@ -242,6 +242,7 @@ def data():
         'quantities': []
     }
 
+    email = request.args.get('email')
     latitude = float(request.args.get('latitude'))
     longitude = float(request.args.get('longitude'))
     produce = request.args.get('produce')
@@ -251,16 +252,22 @@ def data():
 
     results = users.find({'homelocation': {'$near': {'$geometry': query_location, '$maxDistance': max_distance}}})
     for result in results:
-        if produce in result['inventory']:
+        x = None
+        for item in result['inventory']:
+            if item.lower() == produce.lower():
+                x = item
+                break
+            
+        if x and result['email'] != email:
             response['names'].append(result['name'])
             response['emails'].append(result['email'])
             response['locations'].append(get_address(result['homelocation']['coordinates'][0], result['homelocation']['coordinates'][1]))
             response['distances'].append(get_distance([longitude, latitude], result['homelocation']['coordinates']))
 
-            for unit in result['inventory'][produce]['units']:
-                for i in range(len(result['inventory'][produce]['units'][unit])):
-                    response['quantities'].append(str(result['inventory'][produce]['units'][unit][i]['quantity']) + ' ' + unit + ' of')
-
+            for unit in result['inventory'][x]['units']:
+                for i in range(len(result['inventory'][x]['units'][unit])):
+                    response['quantities'].append(str(result['inventory'][x]['units'][unit][i]['quantity']) + ' ' + unit + ' of')
+    print(response)
     return jsonify(response)
 
 @api.route('/api/getname', methods=['GET']) # Returns the user's name
@@ -338,11 +345,11 @@ def find_produce():
     if not search:
         return jsonify({'status': 400})
 
-    results = all_produce.find({'name': {'$regex': '^' + search}})
+    results = all_produce.find({'name': {'$regex': '^' + search, '$options': 'i'}})
     produce_list = []
     for result in results:
         produce_list.append(result['name'])
-    print(produce_list)
+    
     return jsonify({'status': 200, 'produce': produce_list})
 
 if __name__ == '__main__':

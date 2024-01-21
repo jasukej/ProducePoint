@@ -111,7 +111,7 @@ export default function Requests() {
         </div>
         </div>
 
-      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance } className="form-control"/>
+      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance} units={unit} className="form-control"/>
 
 
 
