@@ -4,8 +4,6 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 
-/* Maintain state of StockItems*/
-
 export default function AddItem({ onAddItem }) {
   const [itemFormData, setItemFormData] = useState({
     productName: "",
@@ -47,7 +45,13 @@ export default function AddItem({ onAddItem }) {
       expiryDate: "",
     });
 
-    const response = axios.post(`http://localhost:5000/api/add?email=${user.email}&produce=${itemFormData.productName}&quantity=${itemFormData.quantity}`)
+    const response = axios.post(`http://localhost:5000/api/add?email=${user.email}
+    &produce=${itemFormData.productName}
+    &category=${itemFormData.category}
+    &quantity=${itemFormData.quantity}
+    &unit=${itemFormData.unit}
+    &expiry_date=${itemFormData.expiryDate}
+    `)
     if (response.ok) {
       console.log("Item added successfully");
     } else {
