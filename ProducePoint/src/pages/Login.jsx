@@ -9,14 +9,14 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [password, setPassword] = useState("");
-    const { signUp } = useUserAuth();
+    const { logIn } = useUserAuth();
     let navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         try {
-        await signUp(email, password);
+        await logIn(email, password);
         navigate("/landing");
         } catch (err) {
         setError(err.message);
@@ -54,7 +54,7 @@ export default function Login() {
       </Form>
     </div>
     <div className="p-4 box mt-3 text-center">
-      Click to register? <Link to="/" className="login-link">Register</Link>
+      Don't have an account? Click here to <Link to="/" className="login-link">register</Link>
     </div>
   </>
     )
