@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
 import "../App.css";
 
-export default function Signup({ userData, setUserData }) {
+export default function Signup({ userData, updateUser }) {
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -18,29 +18,41 @@ export default function Signup({ userData, setUserData }) {
     e.preventDefault();
     setError("");
     try {
-      await signUp(email, password);
+      console.log(formData);
+      await signUp(formData.email, formData.password);
+      updateUser({ ...formData });
       navigate("/landing");
     } catch (err) {
       setError(err.message);
     }
   };
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+  });
+
+  const handleChange = (e) => {
+    console.log(e.target, e.target.value);
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <div className="p-4 box">
         {error && <Alert variant="danger">{error}</Alert>}
-
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Control
               type="text"
               placeholder="Name"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
+              name="name"
+              onChange={handleChange}
             />
           </Form.Group>
 
@@ -48,12 +60,8 @@ export default function Signup({ userData, setUserData }) {
             <Form.Control
               type="email"
               placeholder="Email address"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
+              name="email"
+              onChange={handleChange}
             />
           </Form.Group>
 
@@ -61,12 +69,8 @@ export default function Signup({ userData, setUserData }) {
             <Form.Control
               type="password"
               placeholder="Password"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
+              name="password"
+              onChange={handleChange}
             />
           </Form.Group>
 
@@ -74,17 +78,13 @@ export default function Signup({ userData, setUserData }) {
             <Form.Control
               type="text"
               placeholder="Address"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
+              name="address"
+              onChange={handleChange}
             />
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit" class="serif btn-primary">
+            <Button variant="primary" type="Submit" className="serif btn-primary">
               Sign up
             </Button>
           </div>

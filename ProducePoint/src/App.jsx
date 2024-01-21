@@ -12,32 +12,18 @@ import Requests from "./pages/business/requests.jsx";
 import Settings from "./pages/business/settings.jsx";
 import Stock from "./pages/business/stock.jsx";
 
+import { useUserContext } from "./context/UserContext";
+
 // import LandingIndividual from '/pages/individual/landing.jsx';
 // import Requests from '/pages/individual/requests.jsx';
 // import Settings from '/pages/business/settings.jsx';
 
 function App() {
-  /* user data as props */
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-  });
+  const { userData } = useUserContext();
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <RegistrationPage
-            userData={userData}
-            setUserData={prevUserData => {
-              setUserData(userData);
-            }}
-          />
-        }
-      />
+      <Route path="/" element={<RegistrationPage />} />
       <Route path="/login" element={<Login />} />
 
       <Route
@@ -48,7 +34,7 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="/profile" element={<Profile userData={userData} />} />
+      <Route path="/profile" element={<Profile userData={userData}/>} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/stock" element={<Stock />} />
       <Route path="/requests" element={<Requests />} />
