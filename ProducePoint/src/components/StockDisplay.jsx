@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 export default function StockDisplay ({ stockItems }) {
+/* Add the location smhw lol */
     return (
       <div>
         <h2>Stock Display</h2>
