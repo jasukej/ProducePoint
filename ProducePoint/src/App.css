@@ -23,7 +23,7 @@
 }
 
 .body{
-  margin: 0
+  margin: 0;
 }
 
 /* Login & Registration Page */
@@ -61,22 +61,6 @@
   background-color: #388E3C;
   color:#ffffff;
   margin: 15px;
-}
-
-:root {
-  /* Primary colors */
-  --primary: #388E3C; /* Main brand color */
-  --secondary: #81C784; /* Secondary color */
-  --dark-grey: #505050; 
-
-  /* Background colors */
-  --white: #ffffff; /* Background color */
-  --black: #000; /* Body text color */
-
-  /* Font and border colors */
-  --border-color: #ced4da; /* Default border color */
-  --font-color-light: #ffffff; /* Light text color on dark backgrounds */
-  --font-color-dark: #212529; /* Dark text color on light backgrounds */
 }
 
 *{
@@ -176,7 +160,6 @@ h4 {
 
 .regis-page {
   padding: 20px;
-  
 }
 
 /* Navbar */
@@ -208,7 +191,6 @@ h4 {
 
 .navlinks a {
   margin: 15px;
-
 }
 
 .large-text-logo {
@@ -221,6 +203,30 @@ h4 {
   max-width: 500px;
   justify-content: center;
   margin: auto;
+}
 
-  
+.request-box {
+  width: 700px;        
+  height: 400px;       
+  background-color: #5bac5e; /* Background color */
+  color: white;        
+  display: flex;       
+  border-radius: 4px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for 3D effect */  
+}
+
+.within-distance {
+  margin: 2px;
+  padding-top: 30px;
+}
+
+.search {
+  margin: 0;
+  padding-top: 90px;
+}
+
+.add-item {
+  margin: 0;
+  padding-left: 20px;
+  padding-top: 20px;
 }

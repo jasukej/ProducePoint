@@ -20,34 +20,38 @@ export default function Requests() {
 
   return (
     <div className="requests-page">
-      <Navbar />
-      <h1>Looking for something?</h1>
+      
+        <Navbar />
+        <h1>Looking for something?</h1>
 
-      <SearchBar />
+      <div className="request-box">
+        <h3 id="add-item">Add item</h3>
+        
+        <div className="within-distance">
+          <label id="search">
+            Within
+            <input
+              type="text"
+              value={distance}
+              onChange={handleDistanceChange}
+              placeholder="Enter distance"
+            />
+          </label>
 
-      <div className="within-distance">
-        <label>
-          Within
-          <input
-            type="text"
-            value={distance}
-            onChange={handleDistanceChange}
-            placeholder="Enter distance"
-          />
-        </label>
+          <label>
+            <select value={unit} onChange={handleUnitChange}>
+              <option value="miles">Miles</option>
+              <option value="km">Kilometers</option>
+            </select>
+          </label>
 
-        <label>
-          <select value={unit} onChange={handleUnitChange}>
-            <option value="miles">Miles</option>
-            <option value="km">Kilometers</option>
-          </select>
-        </label>
-
-        <div>
-          <h4>Your current location: </h4>
-          <div> {/* User's current location*/} </div>
+          <div>
+            <h4>Your current location: </h4>
+            <div> {/* User's current location*/} </div>
+          </div>
         </div>
       </div>
+      
     </div>
   );
 }
