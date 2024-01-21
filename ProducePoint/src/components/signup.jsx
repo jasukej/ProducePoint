@@ -29,62 +29,63 @@ export default function Signup({ userData, setUserData }) {
     <>
       <div className="p-4 box">
         {error && <Alert variant="danger">{error}</Alert>}
-
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Control
-              type="text"
-              placeholder="Name"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
-            />
-          </Form.Group>
+          <div className="sign-up-container">
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Control
+                type="text"
+                placeholder="Name"
+                onChange={(e) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    name: e.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
-            />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicAddress">
+              <Form.Control
+                type="text"
+                placeholder="Address"
+                onChange={(e) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    name: e.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
-            />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control
+                type="email"
+                placeholder="Email address"
+                onChange={(e) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    name: e.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicAddress">
-            <Form.Control
-              type="text"
-              placeholder="Address"
-              onChange={(e) =>
-                setUserData((prevUserData) => ({
-                  ...prevUserData,
-                  name: e.target.value,
-                }))
-              }
-            />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    name: e.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
+          </div>
 
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit" class="serif btn-primary">
+            <Button variant="primary" type="Submit" className="serif btn-primary">
               Sign up
             </Button>
           </div>
