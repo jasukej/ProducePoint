@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getAuth } from 'firebase/auth';
 
 export default function SearchBar({latitude, longitude, max_distance, units}) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -35,8 +36,11 @@ export default function SearchBar({latitude, longitude, max_distance, units}) {
   }
 
   const handleSearch = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
     try {
-      const response = await axios.get(`http://localhost:5000/api/request?latitude=${latitude}&longitude=${longitude}&produce=${searchTerm}&max_distance=${max_distance}`);
+      const response = await axios.get(`http://localhost:5000/api/request?email=${user.email}&latitude=${latitude}&longitude=${longitude}&produce=${searchTerm}&max_distance=${max_distance}`);
       const {quantities} = response.data;
       const {names} = response.data;
       const {locations} = response.data;
