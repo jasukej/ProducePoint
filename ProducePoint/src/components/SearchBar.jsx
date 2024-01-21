@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function SearchBar() {
+export default function SearchBar({latitude, longitude, max_distance}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const fetchItems = async () => { // I don't have this API yet
       try {
-        const response = await axios.get('http://localhost:3001/api/items');
+        const response = await axios.get('http://localhost:5000/api/getitems');
         setItems(response.data);
       } catch (error) {
         console.error('Error fetching items:', error);
@@ -20,7 +20,7 @@ export default function SearchBar() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/items?search=${searchTerm}`);
+      const response = await axios.get(`http://localhost:5000/api/request?latitude=${latitude}&longitude=${longitude}&produce=${searchTerm}&max_distance=${max_distance}`);
       setItems(response.data);
     } catch (error) {
       console.error('Error searching items:', error);
