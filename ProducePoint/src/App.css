@@ -183,7 +183,7 @@ h4 {
 }
 
 /* Navbar */
-.nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,16 +242,8 @@ h4 {
   width: 700px;        
   height: 400px;       
   margin: auto;
-<<<<<<< HEAD
-  background-color: #5bac5e; /* Background color */
-  color: white;        
-  display: grid;  
-  grid-template-columns: repeat(5, 1fr); 
-  grid-template-rows: repeat(5,1fr);    
-=======
   background-color: #fff; /* Background color */
   color: #388E3C;         
->>>>>>> daa9707fe24dbd0ee76243a2bf62ddaa746260c9
   border-radius: 4px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for 3D effect */  
 }
@@ -297,16 +289,10 @@ h4 {
   margin: 5px;
 }
 
-<<<<<<< HEAD
-
-
-
-=======
 #search-bar-container h2 {
   margin-left: 20px;
   margin-top: 20px;
 }
->>>>>>> daa9707fe24dbd0ee76243a2bf62ddaa746260c9
 
 /* decoration */
 .deco {
@@ -396,7 +382,7 @@ h4 {
 
 .form-label {
   margin-bottom: 40px;
-  font-size:25px;
+  font-size:  25px;
 }
 
 .add-button {
@@ -404,4 +390,6 @@ h4 {
   margin-top: 35px;
   width: 150px;
 }
+
+
 
