@@ -37,15 +37,17 @@ export default function Stock() {
   }, []);
 
   return (
-    <div className="stock">
-    <div className="stock-page">
+    <div className="container">
       <Navbar />
       <h1>Your Stock</h1>
+      <div className="stock-page">
 
-      <AddItem onAddItem={handleAddItem} />
-
-      <StockDisplay stockItems={stockItems} />
-    </div>
+        <div className="stock-box">
+          <AddItem onAddItem={handleAddItem} />
+        </div>
+        <StockDisplay stockItems={stockItems} />
+        
+      </div>
     </div>
   );
 }
