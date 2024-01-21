@@ -26,12 +26,14 @@ export default function Login() {
     return (
     <>
     <div className="p-4 box">
+      
+     <img src="/title.svg" className="large-text-logo"/>
+
       <h1 className="title"> Log in to your ProducePoint </h1>
       {error && <Alert variant="danger">{error}</Alert>}
 
       <Form onSubmit={handleSubmit}>
 
-      <img src="/title.svg" className="large-text-logo"/>
 
       <div className="sign-up-container">
         <Form.Group className="mb-3" controlId="formBasicEmail">

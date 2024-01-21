@@ -5,7 +5,7 @@ import '../App.css'
 export default function Navbar() {
     return (
     <nav className="navbar">
-        <Link to ="/landing"><img src="../assets/Logo.png" className="logo"/></Link>
+        <Link to ="/landing"><img src="/large-logo.png" className="logo"/></Link>
         <div className="navlinks">
             <Link to="/profile"> Profile </Link>
             <Link to="/settings"> Settings </Link>

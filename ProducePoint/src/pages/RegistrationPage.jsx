@@ -13,6 +13,7 @@ export default function RegistrationPage() {
 
     return(
         <div className="regis-page">
+          <img src="/title.svg" className="large-text-logo"/>
             <h1 className="title">Reduce food insecurity, one tap at a time.</h1>
             <Signup userData={userData} updateUser={updateUser} />
         </div>
