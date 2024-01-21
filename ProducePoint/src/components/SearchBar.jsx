@@ -61,19 +61,22 @@ export default function SearchBar({latitude, longitude, max_distance, units}) {
         className='search-bar'
       />
       <button onClick={handleSearch} id="request-button">Search</button>
-      <h1>Items</h1>
+      <h2>Items</h2>
       <ul>
         {items.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
         
-      <h1>Search results</h1>
+      
+      <div className="request-box">
+      <h2>Search results</h2>
       <ul>
         {names.map((name, index) => (
           <li key={index}>{name} has {quantities[index]} {produce} at {locations[index]} ({distances[index]} km) away</li>
         ))}
       </ul>
+      </div>
     </div>
   );
 };

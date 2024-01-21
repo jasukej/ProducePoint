@@ -87,9 +87,7 @@ export default function Requests() {
       
       <h1>Looking for something?</h1>
 
-      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance } className="form-control"/>
-
-
+      
       <div className="within-distance">
         <h3>Within a Radius:</h3>
         <div className="inline">
@@ -111,13 +109,10 @@ export default function Requests() {
             </select>
         </label>
         </div>
-      
         </div>
 
+      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance } className="form-control"/>
 
-      <div className="request-box">
-
-        
 
 
         <div class="current-location">
@@ -125,7 +120,7 @@ export default function Requests() {
             <div id="coordinates">Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}</div>
         </div>
       
-    </div>
+
     </div>
     </div>
   );
