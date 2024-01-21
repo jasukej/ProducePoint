@@ -80,18 +80,17 @@ export default function Requests() {
   }, []); // Empty dependency array means this effect runs once on mount
 
   return (
-    <>
+    <div className="container">
     <Navbar />
 
     <div className="requests-page">
       
-        <h1>Looking for something?</h1>
-        <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance} units={unit}/>
-      <div className="request-box">
-        <h3>Add item</h3>
-        <div className="within-distance">
-        <h4>Within</h4>
-        <div >
+      <h1>Looking for something?</h1>
+
+      
+      <div className="within-distance">
+        <h3>Within a Radius:</h3>
+        <div className="inline">
           <label>
             <input
               type="text"
@@ -102,25 +101,27 @@ export default function Requests() {
             />
           </label>
         </div>
-        </div>
+        <div className="inline">
         <label>
-            <select value={unit} onChange={handleUnitChange} className="form-control unit-select">
+            <select value={unit} onChange={handleUnitChange} className="form-control">
               <option value="miles">Miles</option>
               <option value="km">Kilometers</option>
             </select>
         </label>
+        </div>
+        </div>
 
-      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance } className="searchBar form-control"/>
+      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance } className="form-control"/>
 
 
 
-        <div>
+        <div class="current-location">
             <h4 id="current-location">Your current location: </h4>
             <div id="coordinates">Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}</div>
         </div>
       
+
     </div>
     </div>
-    </>
   );
 }
