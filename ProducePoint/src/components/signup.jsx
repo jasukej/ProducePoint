@@ -46,7 +46,6 @@ export default function Signup({ userData, updateUser }) {
     <>
       <div className="p-4 box">
         {error && <Alert variant="danger">{error}</Alert>}
-
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Control
@@ -85,7 +84,7 @@ export default function Signup({ userData, updateUser }) {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit" class="serif btn-primary">
+            <Button variant="primary" type="Submit" className="serif btn-primary">
               Sign up
             </Button>
           </div>

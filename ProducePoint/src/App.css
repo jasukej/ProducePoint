@@ -40,13 +40,14 @@
 
 .regis-page {
   padding: 20px;
-  width: 75%;
+  width: 100%;
   margin: auto;
 }
 
 .mb-3 {
   margin: 15px;
   height: 35px;
+  width: 200px;
   font-family: Inter;
 }
 
@@ -59,7 +60,7 @@
 .btn-primary {
   background-color: #388E3C;
   color:#ffffff;
-  margin: 7px;
+  margin: 15px;
 }
 
 :root {
@@ -125,7 +126,7 @@
 
 /* font styles */
 .title {
-  font-size: 64px;
+  font-size: 32px;
 }
 
 .bold {
@@ -202,4 +203,18 @@ h4 {
   display: flex;
   gap: 30px;
   justify-content: space-between;
+}
+
+.large-text-logo {
+  height: 40vh;
+}
+
+.sign-up-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 500px;
+  justify-content: center;
+  margin: auto;
+
+  
 }

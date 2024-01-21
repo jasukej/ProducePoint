@@ -31,6 +31,9 @@ export default function Login() {
 
       <Form onSubmit={handleSubmit}>
 
+      <img src="/title.svg" className="large-text-logo"/>
+
+      <div className="sign-up-container">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             type="email"
@@ -46,9 +49,10 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
+      </div>
 
         <div className="d-grid gap-2">
-          <Button variant="primary" type="Submit">
+          <Button variant="primary" type="Submit" className="serif btn-primary">
             Log in
           </Button>
         </div>
