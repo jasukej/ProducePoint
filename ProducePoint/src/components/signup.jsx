@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
-import '../App.css'
+import "../App.css";
 
-export default function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+export default function Signup({ userData, setUserData }) {
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [address, setAddress] = useState("");
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
 
@@ -27,16 +28,32 @@ export default function Signup() {
   return (
     <>
       <div className="p-4 box">
-        
         {error && <Alert variant="danger">{error}</Alert>}
 
         <Form onSubmit={handleSubmit}>
-
-        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Control
-              type="full name"
+              type="text"
               placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) =>
+                setUserData((prevUserData) => ({
+                  ...prevUserData,
+                  name: e.target.value,
+                }))
+              }
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicAddress">
+            <Form.Control
+              type="text"
+              placeholder="Address"
+              onChange={(e) =>
+                setUserData((prevUserData) => ({
+                  ...prevUserData,
+                  name: e.target.value,
+                }))
+              }
             />
           </Form.Group>
 
@@ -44,7 +61,12 @@ export default function Signup() {
             <Form.Control
               type="email"
               placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setUserData((prevUserData) => ({
+                  ...prevUserData,
+                  name: e.target.value,
+                }))
+              }
             />
           </Form.Group>
 
@@ -52,7 +74,12 @@ export default function Signup() {
             <Form.Control
               type="password"
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setUserData((prevUserData) => ({
+                  ...prevUserData,
+                  name: e.target.value,
+                }))
+              }
             />
           </Form.Group>
 
@@ -64,8 +91,11 @@ export default function Signup() {
         </Form>
       </div>
       <div className="p-4 box mt-3 text-center">
-        Already have an account? <Link to="/login" className="login-link">Log In</Link>
+        Already have an account?{" "}
+        <Link to="/login" className="login-link">
+          Log In
+        </Link>
       </div>
     </>
   );
-};
+}
