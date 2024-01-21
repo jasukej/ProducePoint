@@ -63,6 +63,12 @@ export default function Login() {
     <div className="p-4 box mt-3 text-center">
       Don't have an account? Click here to <Link to="/" className="login-link">register</Link>
     </div>
+    <img src="/green-circle-dark.svg" className="deco deco-one" />
+    <img src="/green-circle-light.svg" className="deco deco-two" />
+    <img src="/green-circle-light.svg" className="deco deco-three" />
+    <img src="/green-circle-dark.svg" className="deco deco-four" />
+    <img src="/green-circle-light.svg" className="deco deco-five" />
+    <img src="/green-circle-light.svg" className="deco deco-six" />
   </>
     )
 

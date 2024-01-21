@@ -16,6 +16,13 @@ export default function RegistrationPage() {
           <img src="/title.svg" className="large-text-logo"/>
             <h1 className="title">Reduce food insecurity, one tap at a time.</h1>
             <Signup userData={userData} updateUser={updateUser} />
+
+            <img src="/green-circle-dark.svg" className="deco deco-one" />
+            <img src="/green-circle-light.svg" className="deco deco-two" />
+            <img src="/green-circle-light.svg" className="deco deco-three" />
+            <img src="/green-circle-dark.svg" className="deco deco-four" />
+            <img src="/green-circle-light.svg" className="deco deco-five" />
+            <img src="/green-circle-light.svg" className="deco deco-six" />
         </div>
     )
     

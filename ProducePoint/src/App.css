@@ -224,3 +224,45 @@ h4 {
 
   
 }
+
+/* decoration */
+.deco {
+  position: fixed;
+  display: flex;
+  align-items: center;
+}
+.deco-one{
+  height: 70em;
+  bottom: -60em;
+  right: -20em;
+}
+
+.deco-two{
+  height: 40em;
+  top: -20em;
+  right: -20em;
+}
+
+.deco-three{
+  height: 10em;
+  top: 5em;
+  right: 37em;
+}
+
+.deco-four{
+  height: 12em;
+  top: 9em;
+  right: 30em;
+}
+.deco-five{
+  height: 5em;
+  top: 30em;
+  right: 45em;
+}
+
+.deco-six{
+  height: 3em;
+  top: 25em;
+  right: 20em;
+}
+
