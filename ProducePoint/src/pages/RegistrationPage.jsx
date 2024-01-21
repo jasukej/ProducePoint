@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 import { Link } from 'react-router-dom';
 import Signup from "../components/signup.jsx";
+import '../App.css'
 
 export default function RegistrationPage() {
 

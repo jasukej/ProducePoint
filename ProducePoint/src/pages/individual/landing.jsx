@@ -1,11 +1,5 @@
 import React from "react"
 
-return (
-    <Router>
-        <Navbar />
-        <Routes>
-            
+export default function Landing() {
 
-        </Routes>
-    </Router>
-);
+};
