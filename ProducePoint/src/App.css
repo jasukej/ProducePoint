@@ -14,7 +14,7 @@
 
   /* Font and border colors */
   --border-color: #ced4da; /* Default border color */
-  --font-color-light: #ffffff; /* Light text color on dark backgrounds */
+  --font-color-light: #000000; /* Light text color on dark backgrounds */
   --font-color-dark: #212529; /* Dark text color on light backgrounds */
 }
 
@@ -208,7 +208,7 @@ h4 {
 
 .navlinks a {
   margin: 15px;
-  
+
 }
 
 .large-text-logo {
