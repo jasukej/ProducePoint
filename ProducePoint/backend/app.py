@@ -88,6 +88,12 @@ def add_produce():
         expiry_date_obj = datetime.datetime.strptime(expiry_date, '%Y-%m-%d')
         produce_found = False
 
+        p = all_produce.find_one({'name': produce})
+        if not p:
+            all_produce.insert_one({'name': produce, 'absolutequantity': quantity})
+        else:
+            all_produce.update_one({'name': produce}, {'$inc': {'absolutequantity': quantity}})
+
         for item in result['inventory']:
             if result['inventory'][item] == produce:
                 produce_found = True
@@ -137,6 +143,12 @@ def remove_produce():
 
     try:
         inventory_updated = False
+
+        p = all_produce.find_one({'name': produce})
+        if p and p['absolutequantity'] >= quantity:
+            all_produce.update_one({'name': produce}, {'$dec': {'absolutequantity': quantity}})
+        elif p:
+            all_produce.delete_one({'name': produce})
 
         for item in result['inventory']:
             if result['inventory'][item]['name'] == produce:
@@ -329,8 +341,8 @@ def find_produce():
     results = all_produce.find({'name': {'$regex': '^' + search}})
     produce_list = []
     for result in results:
-        produce_list.append(result)
-
+        produce_list.append(result['name'])
+    print(produce_list)
     return jsonify({'status': 200, 'produce': produce_list})
 
 if __name__ == '__main__':

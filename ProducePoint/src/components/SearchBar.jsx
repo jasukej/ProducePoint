@@ -9,10 +9,29 @@ export default function SearchBar({latitude, longitude, max_distance, units}) {
   const [locations, setLocations] = useState([]);
   const [distances, setDistances] = useState([]);
 
+  const [items, setItems] = useState([]);
+
   if (units === "miles") {
     max_distance = max_distance * 1609.34;
   } else {
     max_distance = max_distance * 1000;
+  }
+  
+  const handleSearchChange = async (e) => {
+    setSearchTerm(e);
+
+    try {
+      const response = await axios.get(`http://localhost:5000/api/findproduce?search=${e}`);
+      const {produce} = response.data;
+      setItems(produce);
+      console.log(produce);
+    } catch (error) {
+      console.error('Error searching items:', error);
+    }
+
+    if (e == null || e === "") {
+      setItems([]);
+    }
   }
 
   const handleSearch = async () => {
@@ -37,12 +56,19 @@ export default function SearchBar({latitude, longitude, max_distance, units}) {
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => handleSearchChange(e.target.value)}
         placeholder="Search..."
         className='form-control'
       />
       <button onClick={handleSearch} id="request-button">Search</button>
-
+      <h1>Items</h1>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+        
+      <h1>Search results</h1>
       <ul>
         {names.map((name, index) => (
           <li key={index}>{name} has {quantities[index]} {produce} at {locations[index]} ({distances[index]} km) away</li>
