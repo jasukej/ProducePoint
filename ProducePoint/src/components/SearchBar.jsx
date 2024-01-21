@@ -39,8 +39,9 @@ export default function SearchBar({latitude, longitude, max_distance, units}) {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search..."
+        className='form-control'
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} id="request-button">Search</button>
 
       <ul>
         {names.map((name, index) => (

@@ -37,6 +37,7 @@ export default function Stock() {
   }, []);
 
   return (
+    <div className="stock">
     <div className="stock-page">
       <Navbar />
       <h1>Your Stock</h1>
@@ -44,6 +45,7 @@ export default function Stock() {
       <AddItem onAddItem={handleAddItem} />
 
       <StockDisplay stockItems={stockItems} />
+    </div>
     </div>
   );
 }
