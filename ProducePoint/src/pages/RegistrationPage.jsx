@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Signup from "../components/signup.jsx";
 import '../App.css'
 
-export default function RegistrationPage() {
+export default function RegistrationPage({userData, setUserData}) {
 
     return(
         <div className="regis-page">

@@ -5,11 +5,13 @@ import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
 import '../App.css'
 
-export default function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [password, setPassword] = useState("");
+export default function Signup({userData, setUserData}) {
+
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [error, setError] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [address, setAddress] = useState("");
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
 
@@ -34,9 +36,9 @@ export default function Signup() {
 
         <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Control
-              type="full name"
+              type="text"
               placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setUserData(prevUserData => ({...prevUserData, name: e.target.value}))}
             />
           </Form.Group>
 
@@ -44,7 +46,7 @@ export default function Signup() {
             <Form.Control
               type="email"
               placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUserData(prevUserData => ({...prevUserData, name: e.target.value}))}
             />
           </Form.Group>
 
@@ -52,7 +54,15 @@ export default function Signup() {
             <Form.Control
               type="password"
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setUserData(prevUserData => ({...prevUserData, name: e.target.value}))}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicAddress">
+            <Form.Control
+              type="text"
+              placeholder="Address"
+              onChange={(e) => setUserData(prevUserData => ({...prevUserData, name: e.target.value}))}
             />
           </Form.Group>
 
