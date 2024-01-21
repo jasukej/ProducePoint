@@ -12,8 +12,8 @@ export default function RegistrationPage() {
 
     return(
         <div className="regis-page">
-            <logoText />
-            <h1 className="title">Reduce food insecurity, one tap at a time.</h1>
+            <img src= "/title.svg" />
+            <h4 className="title">Reduce food insecurity, one tap at a time.</h4>
             <Signup />
         </div>
     )

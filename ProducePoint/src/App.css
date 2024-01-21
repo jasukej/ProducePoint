@@ -84,7 +84,7 @@
 
 .regis-page {
   padding: 20px;
-  width: 75%;
+  width: 100%;
   margin: auto;
 }
 
@@ -177,7 +177,7 @@
 
 /* font styles */
 .title {
-  font-size: 64px;
+  font-size: 32px;
 }
 
 .bold {
@@ -241,4 +241,8 @@ h4 {
 .navlinks {
   display: flex;
   justify-content: space-between;
+}
+
+img {
+  height: 40vh;
 }
