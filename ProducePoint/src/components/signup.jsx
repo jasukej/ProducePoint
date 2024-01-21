@@ -57,7 +57,7 @@ export default function Signup() {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
+            <Button variant="primary" type="Submit" class="serif btn-primary">
               Sign up
             </Button>
           </div>
