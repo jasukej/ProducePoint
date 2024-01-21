@@ -7,14 +7,16 @@ import Login from './pages/Login';
 import ProtectedRoute from './components/protectedRoute.jsx'
 
 import LandingBusiness from './pages/business/landing.jsx';
-// import Stock from '/pages/business/stock.jsx';
+import Profile from './pages/business/profile.jsx';
+import Requests from './pages/business/requests.jsx';
+import Settings from './pages/business/settings.jsx';
+import Stock from './pages/business/stock.jsx';
 
 // import LandingIndividual from '/pages/individual/landing.jsx';
 // import Requests from '/pages/individual/requests.jsx';
 // import Settings from '/pages/business/settings.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <Routes>
@@ -29,6 +31,10 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/stock" element={<Stock />} />
+        <Route path="/requests" element={<Requests />} />
     </Routes>
     
   )

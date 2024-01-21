@@ -91,4 +91,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+}
+
+.navlinks {
+  display: flex;
+  justify-content: space-between;
 }

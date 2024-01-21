@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from '../../components/Navbar'
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../../context/UserAuthContext";
@@ -18,9 +19,9 @@ export default function LandingBusiness() {
 
   return (
     <>
-      <div className="p-4 box mt-3 text-center">
-        Welcome <br />
-        {user && user.email}
+      <Navbar />
+      <div className="p-4 box mt-3">
+        Hey there <span> {user && user.name} </span>
       </div>
       <div className="d-grid gap-2">
           
