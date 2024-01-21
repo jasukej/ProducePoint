@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
-/* Maintain state of StockItems*/
+import axios from 'axios';
+import { getAuth } from 'firebase/auth';
 
 export default function AddItem({ onAddItem }) {
   const [itemFormData, setItemFormData] = useState({
@@ -23,10 +23,14 @@ export default function AddItem({ onAddItem }) {
     });
   };
 
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     console.log(itemFormData)
+    console.log(user)
 
     // Updating stockItems array
     onAddItem({
@@ -40,6 +44,19 @@ export default function AddItem({ onAddItem }) {
       unit: "kg",
       expiryDate: "",
     });
+
+    const response = axios.post(`http://localhost:5000/api/add?email=${user.email}
+    &produce=${itemFormData.productName}
+    &category=${itemFormData.category}
+    &quantity=${itemFormData.quantity}
+    &unit=${itemFormData.unit}
+    &expiry_date=${itemFormData.expiryDate}
+    `)
+    if (response.ok) {
+      console.log("Item added successfully");
+    } else {
+      throw new Error("Failed to save info to the database");
+    }
   };
 
   return (
