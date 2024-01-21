@@ -1,5 +1,5 @@
 import os
-from location import get_coordinates
+from location import get_coordinates, get_address
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from pymongo import MongoClient, GEOSPHERE
@@ -20,6 +20,7 @@ cors.init_app(api)
 
 db = client['ProducePoint']
 users = db['users']
+all_produce = db['produce']
 
 @api.route('/')
 def index():
@@ -44,8 +45,8 @@ def create_user():
         'email': email,
         'name': name,
         'inventory': {},
-        'location': {'type': 'Point', 'coordinates': [latitude, longitude]},
-        'homelocation': {'type': 'Point', 'coordinates': [latitude, longitude]}
+        'location': {'type': 'Point', 'coordinates': [longitude, latitude]},
+        'homelocation': {'type': 'Point', 'coordinates': [longitude, latitude]}
     }
 
     users.insert_one(user)
@@ -59,11 +60,10 @@ def update_location():
 
     if not email or not longitude or not latitude:
         return jsonify({'status': 404})
-
     try:
         users.update_one(
             {'email': email},
-            {'$set': {'location.coordinates': [latitude, longitude]}})
+            {'$set': {'location.coordinates': [longitude, latitude]}})
         return jsonify({'status': 200})
     except:
         return jsonify({'status': 404})
@@ -80,7 +80,6 @@ def add_produce():
     result = users.find_one({'email': email})
     if not result:
         return jsonify({'status': 404})
-    
     try:
         if produce in result['inventory']:
             quantity += result['inventory'][produce]
@@ -151,7 +150,7 @@ def edit_profile():
         try:
             users.update_one(
                 {'email': email},
-                {'$set': {'location.coordinates': [latitude, longitude]}})
+                {'$set': {'location.coordinates': [longitude, latitude]}})
         except:
             return jsonify({'status': 404})
     if newemail:
@@ -167,6 +166,7 @@ def edit_profile():
 @api.route('/api/request', methods=['GET']) # Returns a list of users within a specific radius that have the produce
 def data():
     response = {
+        'names': [],
         'emails':  [],
         'locations': [],
         'quantites': []
@@ -177,21 +177,20 @@ def data():
     produce = request.args.get('produce')
     max_distance = float(request.args.get('max_distance'))
 
-    query_location = {'type': 'Point', 'coordinates': [latitude, longitude]}
+    query_location = {'type': 'Point', 'coordinates': [longitude, latitude]}
 
     results = users.find({'homelocation': {'$near': {'$geometry': query_location, '$maxDistance': max_distance}}})
     for result in results:
         if produce in result['inventory']:
+            response['names'].append(result['name'])
             response['emails'].append(result['email'])
-            response['locations'].append(result['homelocation']['coordinates'])
+            response['locations'].append(get_address(result['homelocation']['coordinates'][0], result['homelocation']['coordinates'][1]))
             response['quantites'].append(result['inventory'][produce])
 
-    print(results)
-    print(response)
     return jsonify(response)
 
 @api.route('/api/getname', methods=['GET']) # Returns the user's profile
-def get_name():
+def name():
     email = request.args.get('email')
 
     if not email:
@@ -204,7 +203,7 @@ def get_name():
     return jsonify({'status': 200, 'name': results['name']})
 
 @api.route('/api/getaddress', methods=['GET']) # Returns the user's profile
-def get_address():
+def address():
     email = request.args.get('email')
 
     if not email:
@@ -219,7 +218,7 @@ def get_address():
     return jsonify({'status': 200, 'address': address})
 
 @api.route('/api/getlocation', methods=['GET']) # Returns the user's location
-def get_location():
+def location():
     email = request.args.get('email')
 
     if not email:
@@ -234,7 +233,7 @@ def get_location():
     return jsonify({'status': 200, 'address': address})
 
 @api.route('/api/getinv', methods=['GET']) # Returns the user's inventory
-def get_inventory():
+def inventory():
     email = request.args.get('email')
 
     if not email:
@@ -247,7 +246,7 @@ def get_inventory():
     return jsonify({'status': 200, 'inventory': results['inventory']})
 
 @api.route('/api/getproduce', methods=['GET']) # Returns the amount of an item in the user's inventory
-def get_produce():
+def produce():
     email = request.args.get('email')
     produce = request.args.get('produce')
 
@@ -262,6 +261,10 @@ def get_produce():
         return jsonify({'status': 200, 'quantity': results['inventory'][produce]})
     else:
         return jsonify({'status': 200, 'quantity': 0})
+
+@api.route('/api/getallproduce', methods=['GET']) # Returns the user's profile
+def allproduce():
+    return jsonify({'status': 200, 'items': [item['name'] for item in all_produce.find()]})
 
 if __name__ == '__main__':
     api.run(debug=True)

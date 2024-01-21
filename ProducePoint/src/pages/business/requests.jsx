@@ -81,22 +81,41 @@ export default function Requests() {
 
   return (
     <div className="requests-page">
-      <Navbar />
-      <h1>Looking for something?</h1>
+      
+        <Navbar />
+        <h1>Looking for something?</h1>
 
+<<<<<<< HEAD
+      <div className="request-box">
+        <h3 id="add-item">Add item</h3>
+        
+        <div className="within-distance">
+          <label id="search">
+            Within
+            <input
+              type="text"
+              value={distance}
+              onChange={handleDistanceChange}
+              placeholder="Enter distance"
+            />
+          </label>
+=======
       <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance}/>
+>>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
 
-      <div className="within-distance">
-        <label>
-          Within
-          <input
-            type="text"
-            value={distance}
-            onChange={handleDistanceChange}
-            placeholder="Enter distance"
-          />
-        </label>
+          <label>
+            <select value={unit} onChange={handleUnitChange}>
+              <option value="miles">Miles</option>
+              <option value="km">Kilometers</option>
+            </select>
+          </label>
 
+<<<<<<< HEAD
+          <div>
+            <h4>Your current location: </h4>
+            <div> {/* User's current location*/} </div>
+          </div>
+=======
         <label>
           <select value={unit} onChange={handleUnitChange}>
             <option value="miles">Miles</option>
@@ -107,8 +126,10 @@ export default function Requests() {
         <div>
             <h4>Your current location: </h4>
             <div>Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}</div>
+>>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
         </div>
       </div>
+      
     </div>
   );
 }
