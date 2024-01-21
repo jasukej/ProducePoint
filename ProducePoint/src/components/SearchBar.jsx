@@ -38,13 +38,13 @@ export default function SearchBar({latitude, longitude, max_distance}) {
   };
 
   return (
-    <div>
+    <div id="search-bar-container">
       <input
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search..."
-        className='form-control'
+        className='search-bar'
       />
       <button onClick={handleSearch} id="request-button">Search</button>
 
