@@ -84,6 +84,149 @@
 
 .regis-page {
   padding: 20px;
+  width: 75%;
+  margin: auto;
+}
+
+.mb-3 {
+  margin: 15px;
+  height: 35px;
+  font-family: Inter;
+}
+
+
+.form-control {
+  height: 35px;
+  width: 200px;
+}
+
+.btn-primary {
+  background-color: #388E3C;
+  color:#ffffff;
+  margin: 7px;
+}
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+:root {
+  /* Primary colors */
+  --primary: #388E3C; /* Main brand color */
+  --secondary: #81C784; /* Secondary color */
+  --dark-grey: #505050; 
+
+  /* Background colors */
+  --white: #ffffff; /* Background color */
+  --black: #000; /* Body text color */
+
+  /* Font and border colors */
+  --border-color: #ced4da; /* Default border color */
+  --font-color-light: #ffffff; /* Light text color on dark backgrounds */
+  --font-color-dark: #212529; /* Dark text color on light backgrounds */
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.body{
+  margin: 0
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* font styles */
+.title {
+  font-size: 64px;
+}
+
+.bold {
+  font-weight:700;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+.body {
+  font-size: 16px;
+}
+
+.sans-serif {
+  font-family: Inter;
+}
+
+.serif {
+  font-family: Merriweather;
+}
+
+/* Login & Registration Page */
+.login-link {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+.regis-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.regis-page {
+  padding: 20px;
+  
 }
 
 /* Navbar */
@@ -91,4 +234,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+
+}
+
+.navlinks {
+  display: flex;
+  justify-content: space-between;
 }
