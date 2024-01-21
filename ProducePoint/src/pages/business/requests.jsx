@@ -80,56 +80,47 @@ export default function Requests() {
   }, []); // Empty dependency array means this effect runs once on mount
 
   return (
+    <>
+    <Navbar />
+
     <div className="requests-page">
       
-        <Navbar />
         <h1>Looking for something?</h1>
 
-<<<<<<< HEAD
       <div className="request-box">
-        <h3 id="add-item">Add item</h3>
-        
+        <h3>Add item</h3>
         <div className="within-distance">
-          <label id="search">
-            Within
+        <h4>Within</h4>
+        <div >
+          <label>
             <input
               type="text"
               value={distance}
               onChange={handleDistanceChange}
               placeholder="Enter distance"
+              className="form-control"
             />
           </label>
-=======
-      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance}/>
->>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
-
-          <label>
-            <select value={unit} onChange={handleUnitChange}>
+        </div>
+        </div>
+        <label>
+            <select value={unit} onChange={handleUnitChange} className="form-control unit-select">
               <option value="miles">Miles</option>
               <option value="km">Kilometers</option>
             </select>
-          </label>
-
-<<<<<<< HEAD
-          <div>
-            <h4>Your current location: </h4>
-            <div> {/* User's current location*/} </div>
-          </div>
-=======
-        <label>
-          <select value={unit} onChange={handleUnitChange}>
-            <option value="miles">Miles</option>
-            <option value="km">Kilometers</option>
-          </select>
         </label>
 
+      <SearchBar latitude={currentLocation.latitude} longitude={currentLocation.longitude} max_distance={distance } className="searchBar form-control"/>
+
+
+
         <div>
-            <h4>Your current location: </h4>
-            <div>Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}</div>
->>>>>>> bbcb3a4f857bc39d65551d2e4841f13f505854c9
+            <h4 id="current-location">Your current location: </h4>
+            <div id="coordinates">Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}</div>
         </div>
-      </div>
       
     </div>
+    </div>
+    </>
   );
 }
