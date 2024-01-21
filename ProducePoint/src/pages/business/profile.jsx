@@ -7,7 +7,7 @@ import RegistrationPage from "../RegistrationPage";
 
 export default function Profile({userData}) {
   const [editableFields, setEditableFields] = useState({
-    Name: false,
+    name: false,
     email: false,
     password: false,
     address: false,
@@ -45,14 +45,14 @@ export default function Profile({userData}) {
             <input
               type="text"
               value={userData.name}
-              onChange={(e) => handleChange("fullName", e)}
+              onChange={(e) => handleChange("name", e)}
             />
           ) : (
             <span>{userData.name}</span>
           )}
-          <button onClick={() => handleEdit("fullName")}>Edit</button>
-          {editableFields.fullName && (
-            <button onClick={() => handleSave("fullName")}>Save</button>
+          <button onClick={() => handleEdit("name")}>Edit</button>
+          {editableFields.name && (
+            <button onClick={() => handleSave("name")}>Save</button>
           )}
         </div>
 
