@@ -1,8 +1,36 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700;900&display=swap');
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+:root {
+  /* Primary colors */
+  --primary: #388E3C; /* Main brand color */
+  --secondary: #81C784; /* Secondary color */
+  --dark-grey: #505050; 
+
+  /* Background colors */
+  --white: #ffffff; /* Background color */
+  --black: #000; /* Body text color */
+
+  /* Font and border colors */
+  --border-color: #ced4da; /* Default border color */
+  --font-color-light: #ffffff; /* Light text color on dark backgrounds */
+  --font-color-dark: #212529; /* Dark text color on light backgrounds */
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.body{
+  margin: 0
 }
 
 .logo {
@@ -17,6 +45,7 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
 
 @keyframes logo-spin {
   from {
@@ -39,4 +68,20 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Login & Registration Page */
+.login-link {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+.regis-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.regis-page {
+  padding: 20px;
 }
